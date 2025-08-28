@@ -1,6 +1,12 @@
-import React from 'react'
-import LumareNoire from './components/LumareNoire'
+import React from "react";
 
-export default function App() {
-  return <LumareNoire />
+function App() {
+  return (
+    <div style={{ fontFamily: "sans-serif", textAlign: "center", marginTop: "50px" }}>
+      <h1>LUMARE NOIRE</h1>
+      <p>Welcome to the future of fashion.</p>
+    </div>
+  );
 }
+
+export default App;
