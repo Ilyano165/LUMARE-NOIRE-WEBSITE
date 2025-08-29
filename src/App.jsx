@@ -1,23 +1,7 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
-
-/* ---------------------------------- Data ---------------------------------- */
-const codex = [
-  { key: "⟠", name: "Haute Couture" },
-  { key: "⧫", name: "Atelier" },
-  { key: "⌖", name: "Archive" },
-  { key: "⟡", name: "Experimental" },
-  { key: "⋄", name: "Basics" },
-  { key: "⟁", name: "Tailoring" },
-  { key: "⍊", name: "Knitwear" },
-  { key: "⊶", name: "Footwear" },
-  { key: "⋔", name: "Accessories" },
-  { key: "⍥", name: "Objects" },
-  { key: "⧫̱", name: "Collabs" },
-  { key: "⟊", name: "Capsule" },
-];
 
 /* ------------------------------- Animations ------------------------------- */
 const fadeInUp = {
@@ -25,40 +9,12 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-/* --------------------------------- Shell --------------------------------- */
-const SectionTitle = ({ children }) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-    variants={fadeInUp}
-    transition={{ duration: 0.6 }}
-    className="flex items-center gap-3"
-  >
-    <div className="h-[1px] w-10 bg-black/60" />
-    <h2 className="tracking-[0.3em] text-xs md:text-sm text-black/70 uppercase">
-      {children}
-    </h2>
-  </motion.div>
-);
-
-const Card = ({ children }) => (
-  <motion.div
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
-  >
-    {children}
-  </motion.div>
-);
-
+/* --------------------------------- Layout -------------------------------- */
 const Header = () => (
   <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-black/5">
     <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <button className="md:hidden p-2">
-          <Menu className="h-5 w-5" />
-        </button>
+        <button className="md:hidden p-2"><Menu className="h-5 w-5" /></button>
         <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase text-black/70">
           {[
             ["Collection", "/"],
@@ -75,9 +31,7 @@ const Header = () => (
                 `hover:text-black ${isActive ? "text-black" : ""}`
               }
             >
-              <motion.span whileHover={{ letterSpacing: "0.35em" }}>
-                {label}
-              </motion.span>
+              <motion.span whileHover={{ letterSpacing: "0.35em" }}>{label}</motion.span>
             </NavLink>
           ))}
         </nav>
@@ -116,9 +70,7 @@ const Footer = () => (
           ["Privacy", "/privacy"],
         ].map(([label, to], i) => (
           <NavLink key={i} to={to} className="hover:text-black">
-            <motion.span whileHover={{ letterSpacing: "0.35em" }}>
-              {label}
-            </motion.span>
+            <motion.span whileHover={{ letterSpacing: "0.35em" }}>{label}</motion.span>
           </NavLink>
         ))}
       </div>
@@ -137,30 +89,53 @@ const Page = ({ children }) => (
 /* --------------------------------- Pages --------------------------------- */
 const Home = () => (
   <Page>
-    {/* Hero */}
-    <section className="mx-auto max-w-6xl px-4 py-24 md:py-32">
+    <section className="mx-auto max-w-6xl px-4 py-24 md:py-32 text-center">
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-3xl md:text-5xl font-bold text-center"
+        transition={{ duration: 0.6 }}
+        className="text-3xl md:text-5xl font-semibold tracking-[0.2em] uppercase"
       >
-        Welcome to Lumare Noire
+        Willkommen bei Lumare Noire
       </motion.h2>
+      <p className="mt-6 text-black/60 max-w-2xl mx-auto">
+        Zeitlose Mode, handgefertigte Details und mutige Designs.  
+        Entdecke die Kollektionen und werde Teil unserer Vision.
+      </p>
     </section>
   </Page>
 );
 
-/* ------------------------------- Router App ------------------------------- */
-const App = () => {
+const Shop = () => (
+  <Page>
+    <section className="mx-auto max-w-6xl px-4 py-20">
+      <h2 className="text-2xl tracking-[0.2em] uppercase mb-6">Shop</h2>
+      <p className="text-black/60">Hier erscheinen bald Produkte.</p>
+    </section>
+  </Page>
+);
+
+const About = () => (
+  <Page>
+    <section className="mx-auto max-w-6xl px-4 py-20">
+      <h2 className="text-2xl tracking-[0.2em] uppercase mb-6">About</h2>
+      <p className="text-black/60">
+        Lumare Noire ist ein Modehaus, das Handwerk und moderne Eleganz verbindet.
+      </p>
+    </section>
+  </Page>
+);
+
+/* ---------------------------------- App ---------------------------------- */
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* weitere Seiten hier eintragen */}
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/about" element={<About />} />
+        {/* Weitere Seiten */}
       </Routes>
     </BrowserRouter>
   );
-};
-
-export default App;
+}
