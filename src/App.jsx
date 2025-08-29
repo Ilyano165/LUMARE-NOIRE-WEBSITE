@@ -22,7 +22,7 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+const SectionTitle = ({ children }) => (
   <motion.div
     initial="hidden"
     whileInView="visible"
@@ -36,7 +36,7 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   </motion.div>
 );
 
-const Card = ({ children }: { children: React.ReactNode }) => (
+const Card = ({ children }) => (
   <motion.div
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
@@ -177,4 +177,53 @@ export default function LumareNoire() {
                   Image Placeholder
                 </motion.div>
                 <div className="mt-4 flex items-center justify-between">
-                  <h3 className="text-sm tracking-[0.2
+                  <h3 className="text-sm tracking-[0.2em] uppercase">{title}</h3>
+                  <span className="text-lg">{codex[idx].key}</span>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Codex */}
+      <section id="codex" className="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <SectionTitle>Codex</SectionTitle>
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {codex.map((c, i) => (
+            <Card key={i}>
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 2 }}
+                className="h-28 grid place-items-center text-3xl select-none"
+              >
+                {c.key}
+              </motion.div>
+              <div className="text-[10px] tracking-[0.3em] uppercase text-black/60 text-center">{c.name}</div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="mx-auto max-w-4xl px-4 py-16 md:py-24">
+        <SectionTitle>About</SectionTitle>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          transition={{ duration: 0.8 }}
+          className="mt-6 grid md:grid-cols-12 gap-8"
+        >
+          <div className="md:col-span-7">
+            <p className="leading-relaxed text-black/80">
+              Lumare Noire is a study in restraint: a system of symbols, garments and gestures.
+              Built on archive sensibilities and experimental construction, the label maintains a
+              strict visual language—monochrome, geometric, unadorned—so that form and intention remain clear.
+            </p>
+          </div>
+          <div className="md:col-span-5">
+            <motion.div whileHover={{ scale: 1.02 }} className="rounded-2xl border border-black/10 p-6">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-black/50 mb-2">Signature Stitch</p>
+              <div className="aspect-[5/3] rounded-xl border border-black/15 grid place-items-center text-black/30 text-[10px] tracking-[0.25em] uppercase">
+                Label / Stitch Mock
