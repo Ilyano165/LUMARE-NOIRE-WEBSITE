@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Eigene globale Styles */
 html, body {
-  font-family: 'Inter', sans-serif;
-  background-color: #fff;
-  color: #000;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LUMARE NOIRE</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+body {
+  @apply bg-black text-white antialiased;
+}
 
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+}
+
+a {
+  @apply text-blue-400 hover:text-blue-300 transition-colors;
+}
