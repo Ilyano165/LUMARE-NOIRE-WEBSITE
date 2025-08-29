@@ -53,7 +53,7 @@ export default function LumareNoire() {
       <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-black/5">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button className="md:hidden p-2"><Menu className="h-5 w-5"/></button>
+            <button className="md:hidden p-2"><Menu className="h-5 w-5" /></button>
             <span className="sr-only">Menu</span>
             <div className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase text-black/70">
               {['Collection','Codex','About','Archive'].map((item,i) => (
@@ -78,7 +78,7 @@ export default function LumareNoire() {
               LUMARE NOIRE
             </motion.h1>
           </div>
-          <div className="w-[88px] md:w-[140px]" /> {/* spacer */}
+          <div className="w-[88px] md:w-[140px]" />
         </div>
       </header>
 
@@ -226,4 +226,48 @@ export default function LumareNoire() {
             <motion.div whileHover={{ scale: 1.02 }} className="rounded-2xl border border-black/10 p-6">
               <p className="text-[10px] tracking-[0.3em] uppercase text-black/50 mb-2">Signature Stitch</p>
               <div className="aspect-[5/3] rounded-xl border border-black/15 grid place-items-center text-black/30 text-[10px] tracking-[0.25em] uppercase">
-                Label / Stitch Mock
+                Label / Stitch Mockup
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Archive */}
+      <section id="archive" className="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <SectionTitle>Archive</SectionTitle>
+        <div className="mt-6 grid md:grid-cols-4 gap-6">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Card key={i}>
+              <motion.div whileHover={{ opacity: 0.7 }} className="aspect-[4/5] w-full rounded-xl border border-black/10 grid place-items-center text-black/30 text-[10px] tracking-[0.25em] uppercase">
+                Artifact
+              </motion.div>
+              <div className="mt-4 text-[10px] tracking-[0.3em] uppercase text-black/60">SS{26 + i} / Drop {i + 1}</div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-black/10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          transition={{ duration: 0.8 }}
+          className="mx-auto max-w-6xl px-4 py-14 flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div className="tracking-[0.3em] text-[10px] uppercase text-black/60">© {new Date().getFullYear()} Lumare Noire</div>
+          <div className="flex items-center gap-6 text-[10px] tracking-[0.3em] uppercase text-black/60">
+            {['Contact','Stockists','Privacy'].map((item,i) => (
+              <motion.a key={i} whileHover={{ opacity: 1, letterSpacing: "0.35em" }} href="#" className="hover:text-black">
+                {item}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+      </footer>
+    </div>
+  );
+}
