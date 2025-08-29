@@ -46,22 +46,24 @@ const Card = ({ children }) => (
   </motion.div>
 );
 
-export default function LumareNoire() {
+export default function App() {
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       {/* Nav */}
       <header className="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-black/5">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button className="md:hidden p-2"><Menu className="h-5 w-5" /></button>
+            <button className="md:hidden p-2">
+              <Menu className="h-5 w-5" />
+            </button>
             <span className="sr-only">Menu</span>
             <div className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase text-black/70">
-              {['Collection','Codex','About','Archive'].map((item,i) => (
+              {["Collection", "Codex", "About", "Archive"].map((item, i) => (
                 <motion.a
                   key={i}
                   href={`#${item.toLowerCase()}`}
                   whileHover={{ opacity: 1, letterSpacing: "0.35em" }}
-                  className="hover:text-black transition-all"
+                  className="hover:text-black"
                 >
                   {item}
                 </motion.a>
@@ -78,7 +80,7 @@ export default function LumareNoire() {
               LUMARE NOIRE
             </motion.h1>
           </div>
-          <div className="w-[88px] md:w-[140px]" />
+          <div className="w-[88px] md:w-[140px]" /> {/* spacer */}
         </div>
       </header>
 
@@ -111,7 +113,7 @@ export default function LumareNoire() {
               Archive-driven. Avantgarde. <span className="italic">Essentially</span> minimal.
             </motion.h2>
             <div className="mt-10 flex items-center gap-4">
-              {['Enter','Codex'].map((btn,i) => (
+              {["Enter", "Codex"].map((btn, i) => (
                 <motion.a
                   key={i}
                   href={`#${btn.toLowerCase()}`}
@@ -124,6 +126,7 @@ export default function LumareNoire() {
               ))}
             </div>
           </div>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -156,11 +159,11 @@ export default function LumareNoire() {
         </motion.div>
       </section>
 
-      {/* Collection */}
+      {/* Collection Preview */}
       <section id="collection" className="mx-auto max-w-6xl px-4 py-16 md:py-24">
         <SectionTitle>Collection</SectionTitle>
         <div className="grid md:grid-cols-3 gap-6 mt-6">
-          {["Noir Basics","Experimental","Tailoring"].map((title, idx) => (
+          {["Noir Basics", "Experimental", "Tailoring"].map((title, idx) => (
             <motion.div
               key={idx}
               initial="hidden"
@@ -239,7 +242,10 @@ export default function LumareNoire() {
         <div className="mt-6 grid md:grid-cols-4 gap-6">
           {Array.from({ length: 4 }).map((_, i) => (
             <Card key={i}>
-              <motion.div whileHover={{ opacity: 0.7 }} className="aspect-[4/5] w-full rounded-xl border border-black/10 grid place-items-center text-black/30 text-[10px] tracking-[0.25em] uppercase">
+              <motion.div
+                whileHover={{ opacity: 0.7 }}
+                className="aspect-[4/5] w-full rounded-xl border border-black/10 grid place-items-center text-black/30 text-[10px] tracking-[0.25em] uppercase"
+              >
                 Artifact
               </motion.div>
               <div className="mt-4 text-[10px] tracking-[0.3em] uppercase text-black/60">SS{26 + i} / Drop {i + 1}</div>
@@ -260,8 +266,13 @@ export default function LumareNoire() {
         >
           <div className="tracking-[0.3em] text-[10px] uppercase text-black/60">© {new Date().getFullYear()} Lumare Noire</div>
           <div className="flex items-center gap-6 text-[10px] tracking-[0.3em] uppercase text-black/60">
-            {['Contact','Stockists','Privacy'].map((item,i) => (
-              <motion.a key={i} whileHover={{ opacity: 1, letterSpacing: "0.35em" }} href="#" className="hover:text-black">
+            {["Contact", "Stockists", "Privacy"].map((item, i) => (
+              <motion.a
+                key={i}
+                whileHover={{ opacity: 1, letterSpacing: "0.35em" }}
+                href="#"
+                className="hover:text-black"
+              >
                 {item}
               </motion.a>
             ))}
